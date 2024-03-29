@@ -9,7 +9,7 @@ const Profile = () => {
         <form className='p-4 border border-gray-500 rounded-md'>
         <div class="space-y-12">
             <div class="border-b border-gray-900/10 pb-12">
-            <h2 class="text-3xl font-semibold leading-7 text-gray-900">Profile</h2>
+            <h2 class="text-3xl font-semibold leading-7 text-gray-900">Profile Information fo Client</h2>
             <p class="mt-1 text-sm leading-6 text-gray-600">This information will be displayed publicly so be careful what you share.</p>
 
             <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
@@ -64,9 +64,9 @@ const Profile = () => {
                 <label for="country" class="block text-sm font-medium leading-6 text-gray-900">Country</label>
                 <div class="mt-2">
                     <select id="country" name="country" autocomplete="country-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
-                    <option>United States</option>
-                    <option>Canada</option>
-                    <option>Mexico</option>
+                    <option>India</option>
+                    <option>Nepal</option>
+                    <option>Sri Lanka</option>
                     </select>
                 </div>
                 </div>
@@ -115,7 +115,7 @@ const Profile = () => {
                     </div>
                     <div class="text-sm leading-6">
                         <label for="comments" class="font-medium text-gray-900">Comments</label>
-                        <p class="text-gray-500">Get notified when someones posts a comment on a posting.</p>
+                        <p class="text-gray-500">Get notified when someones posts a comments on your queries.</p>
                     </div>
                     </div>
                     <div class="relative flex gap-x-3">
@@ -133,7 +133,7 @@ const Profile = () => {
                     </div>
                     <div class="text-sm leading-6">
                         <label for="offers" class="font-medium text-gray-900">Offers</label>
-                        <p class="text-gray-500">Get notified when a candidate accepts or rejects an offer.</p>
+                        <p class="text-gray-500">Get notified when a expert accepts or rejects an offer.</p>
                     </div>
                     </div>
                 </div>

@@ -13,8 +13,8 @@ function FeaturesBlocks() {
 
           {/* Section header */}
           <div className="max-w-3xl mx-auto text-center pb-12 md:pb-20">
-            <h2 className="h2 mb-4">How Simple works</h2>
-            <p className="text-xl text-gray-600">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur excepteur sint occaecat cupidatat.</p>
+            <h2 className="h2 mb-4">Follow these simple steps to solve your problems.</h2>
+            <p className="text-xl text-gray-600"></p>
           </div>
 
           {/* Items */}
@@ -33,8 +33,8 @@ function FeaturesBlocks() {
                   </g>
                 </g>
               </svg>
-              <h4 className="text-xl font-bold leading-snug tracking-tight mb-1">Initial Contact</h4>
-              <p className="text-gray-600 text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <h4 className="text-xl font-bold leading-snug tracking-tight mb-1">Registration</h4>
+              <p className="text-gray-600 text-center"> create an account and provide necessary information..</p>
             </div>
 
             {/* 2nd item */}
@@ -49,8 +49,8 @@ function FeaturesBlocks() {
                   </g>
                 </g>
               </svg>
-              <h4 className="text-xl font-bold leading-snug tracking-tight mb-1">Discovery Session</h4>
-              <p className="text-gray-600 text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <h4 className="text-xl font-bold leading-snug tracking-tight mb-1">Search</h4>
+              <p className="text-gray-600 text-center">Browse expertise listings or post specific requests.</p>
             </div>
 
             {/* 3rd item */}
@@ -64,8 +64,8 @@ function FeaturesBlocks() {
                   </g>
                 </g>
               </svg>
-              <h4 className="text-xl font-bold leading-snug tracking-tight mb-1">Contracting</h4>
-              <p className="text-gray-600 text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <h4 className="text-xl font-bold leading-snug tracking-tight mb-1">Selection</h4>
+              <p className="text-gray-600 text-center">Choose preferred consultants based on profiles and reviews.</p>
             </div>
 
             {/* 4th item */}
@@ -81,8 +81,8 @@ function FeaturesBlocks() {
                   </g>
                 </g>
               </svg>              
-              <h4 className="text-xl font-bold leading-snug tracking-tight mb-1">Fast Prototyping</h4>
-              <p className="text-gray-600 text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <h4 className="text-xl font-bold leading-snug tracking-tight mb-1">Consultation</h4>
+              <p className="text-gray-600 text-center">Scheduled sessions of information between you and consultants.</p>
             </div>
 
             {/* 5th item */}
@@ -96,8 +96,8 @@ function FeaturesBlocks() {
                   </g>
                 </g>
               </svg>
-              <h4 className="text-xl font-bold leading-snug tracking-tight mb-1">Design Phase</h4>
-              <p className="text-gray-600 text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <h4 className="text-xl font-bold leading-snug tracking-tight mb-1">Payment</h4>
+              <p className="text-gray-600 text-center">Secure transactions conducted via blockchain.</p>
             </div>
 
             {/* 6th item */}
@@ -113,8 +113,8 @@ function FeaturesBlocks() {
                   </g>
                 </g>
               </svg>
-              <h4 className="text-xl font-bold leading-snug tracking-tight mb-1">Develop & Launch</h4>
-              <p className="text-gray-600 text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+              <h4 className="text-xl font-bold leading-snug tracking-tight mb-1">Feedback</h4>
+              <p className="text-gray-600 text-center">Provide feedback to consultants, contributing to the reputation system.</p>
             </div>
 
           </div>
