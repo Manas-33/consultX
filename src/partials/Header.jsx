@@ -20,7 +20,7 @@ function Header() {
         <div className="flex items-center justify-between h-16 md:h-20">
     
           {/* Site branding */}
-          <div className="flex-shrink-0 mr-4">
+          <div className="flex-shrink-0 mr-4 flex-row">
             {/* Logo */}
             <Link to="/" className="block" aria-label="Cruip">
               <svg className="w-8 h-8" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
@@ -35,6 +35,8 @@ function Header() {
               </svg>
             </Link>
           </div>
+
+          <p style={{fontWeight:'bolder',fontSize:'30px'}}>ConsultX</p>
 
           {/* Site navigation */}
           <nav className="flex flex-grow">

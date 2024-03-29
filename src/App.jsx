@@ -10,12 +10,12 @@ import './css/style.css';
 
 import AOS from 'aos';
 
-import Home from './pages/Home';
-import SignIn from './pages/SignIn';
-import SignUp from './pages/SignUp';
+import ClerkProfile from './pages/ClerkProfile';
+import MainRender from './pages/MainRender';
+import SignIn from './pages/SignInPage';
+import SignUp from './pages/SignUpPage';
 import ResetPassword from './pages/ResetPassword';
 import BrowseClientList from './pages/BrowseClientList';
-import Profile from './pages/Profile';
 import FindExperts from './pages/FindExperts';
 
 function App() {
@@ -40,10 +40,10 @@ function App() {
   return (
     <>
       <Routes>
-        <Route exact path="/" element={<Home />} />
+        <Route exact path="/" element={<MainRender />} />
         <Route path="/find" element={<FindExperts />} />
         <Route path='/browse' element={<BrowseClientList/>}/>
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/profile" element={<ClerkProfile />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/reset-password" element={<ResetPassword />} />
