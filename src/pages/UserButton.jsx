@@ -39,19 +39,57 @@ export function UserButton() {
     <UnstyledButton className={classes.user}>
       <Group>
 
-        <Avatar
-          src={UserImage}
-          radius="xl"
-        style={{borderRadius:'30%'}} />
-
-        <div style={{ flex: 1 }}>
-          <Text size="sm" fw={500}>
+        <div style={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          marginRight: 20,
+        }}>
+          <Avatar
+            src={UserImage}
+            style={{borderRadius: '50%'}}
+          />
+        </div>
+        
+        <div style={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          marginRight: 20
+        }}>
+          <Text size="sm" color="gray" 
+          style={{ 
+            textAlign: 'left', marginTop: 30, fontWeight: "bold"
+          }}>
             {UserName}
           </Text>
-
+          <Text size="sm" color="gray" style={{ textAlign: 'left' }}>
+            {UserEmail}
+          </Text>
         </div>
-
-        <IconLogout style={{ width: rem(14), height: rem(14) }} stroke={1.5} onClick={SignoutUser} />
+        <div
+        // make a round circle
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            borderRadius: '50%',
+            width: 50,
+            height: 50,
+            backgroundColor: 'rgba(0,0,0,0.1)',
+            marginLeft: 75,
+            marginTop: 10
+          }}
+        >
+        <IconLogout
+          style={{ color: 'red'}}
+          stroke={1.5}
+          onClick={SignoutUser}
+        />
+        </div>
       </Group>
     </UnstyledButton>
   );
