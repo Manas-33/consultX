@@ -5,16 +5,24 @@ import { ChevronDown, ClipboardList, HomeIcon } from 'lucide-react'
 import { Link } from 'react-router-dom';
 import { useUser } from '@clerk/clerk-react';
 import * as LR from "@uploadcare/blocks";
-import { uploadFile } from '@uploadcare/upload-client'
+import { uploadFile } from '@uploadcare/upload-client';
+import { ethers } from 'ethers';
+import abi from '../ABI/consultVerse.json';
+import { connectAccount } from 'enchantmask';
+import '../css/ExpertPage.css';
+import Expertcard from './Expertcard';
+
 
 
 const ExpertPage = () => {
 
   LR.registerBlocks(LR);
+  const [ContractAddress, setContractAddress] = useState("0x49C49cC95d6337bb93ad662AabF9F186F098E690");
+  const [COntract, setCOntract] = useState();
+  const [Address, setAddress] = useState("");
   const [FilledProfile, setFilledProfile] = useState(false);
   const [ExpertFees, setExpertFees] = useState("");
   const [ExpertiseSector, setExpertiseSector] = useState("");
-  const [UploadedFile, setUploadedFile] = useState();
   const [UploadedFileUrl, setUploadedFileUrl] = useState("");
   const [PhoneNumber, setPhoneNumber] = useState(0);
 
@@ -39,15 +47,24 @@ const ExpertPage = () => {
 
   const UpdateExpertProfile = async (e) => {
     e.preventDefault();
+    await connectAccount();
+
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signers = provider.getSigner();
+    const ContractInstance = new ethers.Contract(ContractAddress, abi.abi, signers);
+    const NewExpertProfile = await ContractInstance.FillExpertProfile(user.user.fullName, user.user.primaryEmailAddress.emailAddress, PhoneNumber, ExpertiseSector, ExpertFees);
+    console.log(NewExpertProfile);
+
     await axios.post("http://localhost:9000/UpdateExpertProfile", { UserEmail: user.user.primaryEmailAddress.emailAddress, UpdateData: UpdateData }, { withCredentials: true }).then((res) => {
       console.log()
     }).catch((err) => {
       console.log(`${err} Occured`)
     })
+
   }
 
 
-  const uploadFiletoBackend=async(FileUpload)=>{
+  const uploadFiletoBackend = async (FileUpload) => {
 
     const result = await uploadFile(
       FileUpload,
@@ -60,7 +77,7 @@ const ExpertPage = () => {
         }
       }
     )
-    console.log("Uploaded to Backend : "+result.cdnUrl);
+    console.log("Uploaded to Backend : " + result.cdnUrl);
     setUploadedFileUrl(result.cdnUrl);
     alert("File Uploaded");
   }
@@ -76,9 +93,9 @@ const ExpertPage = () => {
     <>
       {!FilledProfile ? <><section>
         <div className='grid grid-cols-6 bg-white '>
-          <div className='min-h-screen felx flex-col justify-between bg-slate-200 h-100 px-2.5 py-4 relative'>
+          <div className='min-h-screen felx flex-col justify-between bg-slate-200 h-100 px-2.5 py-4 relative' style={{ width: '300px' }}>
 
-            <div className='flex gap-3'>
+            <div className='flex gap-3 '  >
               <div className='flex flex-col mx-4 gap-1 justify-start items-start w-2/3'>
                 <p className='text-2xl font-semibold'>
                   ConsultX</p>
@@ -94,6 +111,7 @@ const ExpertPage = () => {
                 <HomeIcon className='w-5 h-5' />
                 <p className='text-[14px]'>Fill Profile</p>
               </div>
+
               <Link to="/profile">
                 <div className='flex gap-2 px-2 py-4 rounded-md hover:bg-slate-300'>
                   <ClipboardList className='w-5 h-5' />
@@ -101,12 +119,22 @@ const ExpertPage = () => {
                 </div>
               </Link>
 
+              <div className='flex gap-2 px-2 py-4 rounded-md hover:bg-slate-300'>
+                <HomeIcon className='w-5 h-5' />
+                <p className='text-[14px]'>Check Approvals</p>
+              </div>
+
+              <div className='flex gap-2 px-2 py-4 rounded-md hover:bg-slate-300'>
+                <HomeIcon className='w-5 h-5' />
+                <p className='text-[14px]'>Check Clients</p>
+
+              </div>
+
               <br />
               <br />
               <br />
 
               <UserButton />
-
             </div>
           </div>
 
@@ -160,9 +188,8 @@ const ExpertPage = () => {
 
                             <input type="file" name="postal-code" id="postal-code" autocomplete="postal-code" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" onChange={async (e) => {
                               e.preventDefault();
-                              // setUploadedFile(e.target.files[0]);
                               uploadFiletoBackend(e.target.files[0]);
-                            }} /> 
+                            }} />
 
                           </div>
                         </div>
@@ -186,7 +213,7 @@ const ExpertPage = () => {
           </div>
 
         </div>
-      </section></> : <></>}
+      </section></> :<><p><Expertcard Name={user.user.fullName} Email={user.user.primaryEmailAddress.emailAddress}  ImageURL={user.user.imageUrl}/></p></>}
     </>
 
   )

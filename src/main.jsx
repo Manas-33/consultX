@@ -2,9 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { ClerkProvider } from '@clerk/clerk-react';
-import App from './App';
-// import { NextUIProvider } from "@nextui-org/react";
 import { MantineProvider } from '@mantine/core';
+import App from './App';
 
 const PUBLISHABLE_KEY = "pk_test_bW9kZWwtcG9sZWNhdC0xLmNsZXJrLmFjY291bnRzLmRldiQ"
 

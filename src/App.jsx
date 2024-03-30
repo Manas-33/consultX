@@ -21,6 +21,7 @@ import AdminPage from './pages/AdminPage';
 import Requests from './pages/Requests';
 import ExpertPage from './pages/ExpertPage';
 import AnonButton from './partials/AnonButton';
+import Expertcard from './pages/Expertcard'
 
 
 function App() {
@@ -52,8 +53,8 @@ function App() {
         <Route path="/profile" element={<ClerkProfile />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path='/admin/requests' element={<Requests/>}/>
         <Route path='/expert' element={<ExpertPage/>} />
+        <Route path='/expert/req' element={<Expertcard/>} />
         <Route path='/div' element={<DiveshProfile/>} />
         <Route path='/verify' element={<AnonButton/>} />
         <Route path='/approved' element={<ExpertPage />} />

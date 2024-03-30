@@ -1,0 +1,50 @@
+type AddedClient @entity(immutable: true) {
+  id: Bytes!
+  ClientAddress: Bytes! # address
+  ClientName: String! # string
+  ClientEmailId: String! # string
+  ClientPhoneNumber: String! # string
+  IntersestedConsulation: String! # string
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type AddedExpert @entity(immutable: true) {
+  id: Bytes!
+  ExpertAddress: Bytes! # address
+  ExpertName: String! # string
+  EmailId: String! # string
+  PhoneNumber: String! # string
+  Expertise: String! # string
+  ExpertFees: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type ClientRequested @entity(immutable: true) {
+  id: Bytes!
+  ClientAddress: Bytes! # address
+  ClientEmailAddress: String! # string
+  ClientName: String! # string
+  phoneNumber: String! # string
+  RequestIndex: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}
+
+type ExpertRequested @entity(immutable: true) {
+  id: Bytes!
+  ExpertAddress: Bytes! # address
+  RequestNumber: BigInt! # uint256
+  ExpertName: String! # string
+  ExpertemailAddress: String! # string
+  phoneNumber: String! # string
+  expertise: String! # string
+  coursefees: BigInt! # uint256
+  blockNumber: BigInt!
+  blockTimestamp: BigInt!
+  transactionHash: Bytes!
+}

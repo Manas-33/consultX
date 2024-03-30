@@ -45,6 +45,7 @@ export function UserButton() {
           justifyContent: 'center',
           alignItems: 'center',
           marginRight: 20,
+          width:'fit-content'
         }}>
           <Avatar
             src={UserImage}

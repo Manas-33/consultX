@@ -1,18 +1,13 @@
-import React from 'react';
-
-// import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@nextui-org/react";
-
-import ClerkProfile from './ClerkProfile';
+import { useEffect, useState } from 'react';
 import { UserButton } from './UserButton';
-
-import { ArrowDown, ArrowDownToLine, ArrowUpDown, BadgePercent, BarChartBig, ChevronDown, ChevronLeft, ChevronRight, ClipboardList, CreditCard, HelpCircle, HomeIcon, Info, LayoutGrid, MousePointer2, Palette, Search, Truck, Users, Volume2, Wallet, Zap } from 'lucide-react'
-
+import { ArrowDownToLine, ChevronDown, ClipboardList, HomeIcon } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import AnonButton from '../partials/AnonButton';
 
+
 const AdminPage = () => {
 
-  // const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const [AllRequests, setAllRequests] = useState();
 
   const AcceptRequest = async () => {
 
@@ -22,8 +17,13 @@ const AdminPage = () => {
 
   }
 
+  const getAllExpertsRequests = async () => {
 
+  }
 
+  useEffect(() => {
+    getAllExpertsRequests();
+  }, [])
 
 
   return (
@@ -58,7 +58,7 @@ const AdminPage = () => {
             <br />
             <br />
 
-            <UserButton  />
+            <UserButton />
 
           </div>
         </div>
@@ -127,10 +127,10 @@ const AdminPage = () => {
                       <div className='flex justify-start items-center'>
                         <p className='text-[15px] text-[#4D4D4D] font-[500]'>7 July, 2023</p>
                       </div>
-                      <div className='flex justify-end items-end'><p className='text-[15px] font-[500]'>Show Details</p></div>
+                      <div className='flex justify-end items-end'><a href={""} className='text-[15px] font-[500]'>Show Details</a></div>
                       <div className='flex justify-end items-center'>
                         <p className='text-[15px] text-[#4D4D4D] font-[500]'>
-                        <AnonButton />
+                          <AnonButton />
                         </p>
                       </div>
                       <div className='flex justify-end items-end' style={{ width: 'fit-content', marginLeft: '50px' }}>
