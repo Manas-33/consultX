@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@nextui-org/react";
+// import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@nextui-org/react";
 
 import ClerkProfile from './ClerkProfile';
 import { UserButton } from './UserButton';
@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom'
 
 const AdminPage = () => {
 
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  // const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   const AcceptRequest = async () => {
 
@@ -133,7 +133,7 @@ const AdminPage = () => {
 
                   </div>
 
-                  <Modal isOpen={isOpen} onOpenChange={onOpenChange} style={{ backgroundColor: "white", border: '3px solid grey' }}>
+                  {/* <Modal isOpen={isOpen} onOpenChange={onOpenChange} style={{ backgroundColor: "white", border: '3px solid grey' }}>
                     <ModalContent>
                       {(onClose) => (
                         <>
@@ -165,7 +165,7 @@ const AdminPage = () => {
                         </>
                       )}
                     </ModalContent>
-                  </Modal>
+                  </Modal> */}
 
                   {/* Orders List */}
                   <div>

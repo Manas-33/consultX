@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useDisclosure } from "@nextui-org/react";
+// import { useDisclosure } from "@nextui-org/react";
 import ClerkProfile from './ClerkProfile';
 import { UserButton } from './UserButton';
 import { ChevronDown, ClipboardList, HomeIcon } from 'lucide-react'
@@ -12,7 +12,7 @@ import confen from '../images/confen.jpeg'
 
 const ExpertPage = () => {
 
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  // const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [FilledProfile, setFilledProfile] = useState(false);
   const [ExpertFees, setExpertFees] = useState("");
   const [ExpertiseSector, setExpertiseSector] = useState("");
