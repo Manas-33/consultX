@@ -14,9 +14,13 @@ import ClerkProfile from './pages/ClerkProfile';
 import MainRender from './pages/MainRender';
 import SignIn from './pages/SignInPage';
 import SignUp from './pages/SignUpPage';
-import ResetPassword from './pages/ResetPassword';
+import DiveshProfile from './pages/Profile'
 import BrowseClientList from './pages/BrowseClientList';
 import FindExperts from './pages/FindExperts';
+import AdminPage from './pages/AdminPage';
+import Requests from './pages/Requests';
+import ExpertPage from './pages/ExpertPage';
+
 
 function App() {
 
@@ -42,11 +46,16 @@ function App() {
       <Routes>
         <Route exact path="/" element={<MainRender />} />
         <Route path="/find" element={<FindExperts />} />
+        <Route path="/admin" element={<AdminPage />} />
         <Route path='/browse' element={<BrowseClientList/>}/>
         <Route path="/profile" element={<ClerkProfile />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/reset-password" element={<ResetPassword />} />
+        <Route path='/admin/requests' element={<Requests/>}/>
+        <Route path='/expert' element={<ExpertPage/>} />
+        <Route path='/div' element={<DiveshProfile/>} />
+
+
       </Routes>
     </>
   );
