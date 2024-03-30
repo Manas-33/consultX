@@ -8,6 +8,7 @@ import { UserButton } from './UserButton';
 import { ArrowDown, ArrowDownToLine, ArrowUpDown, BadgePercent, BarChartBig, ChevronDown, ChevronLeft, ChevronRight, ClipboardList, CreditCard, HelpCircle, HomeIcon, Info, LayoutGrid, MousePointer2, Palette, Search, Truck, Users, Volume2, Wallet, Zap } from 'lucide-react'
 
 import { Link } from 'react-router-dom'
+import AnonButton from '../partials/AnonButton';
 
 const AdminPage = () => {
 
@@ -27,7 +28,7 @@ const AdminPage = () => {
 
   return (
     <section>
-      <div className='grid grid-cols-6 bg-white '>
+      <div className='grid grid-cols-5 bg-white '>
         <div className='min-h-screen felx flex-col justify-between bg-slate-200 h-100 px-2.5 py-4 relative'>
 
           <div className='flex gap-3'>
@@ -63,21 +64,7 @@ const AdminPage = () => {
         </div>
 
 
-        <div className='col-span-5'>
-          {/* <div className='grid grid-cols-3 gap-4 py-4 px-8 items-center border-b-2 border-gray-200'>
-            <div className='flex gap-4 w-auto'>
-              <p className='text-[15px] font-md'>Payments</p>
-              <div className='flex items-center gap-2 w-auto'>
-                <HelpCircle className='text-gray-400 w-4 h-4'/>
-                <p className='text-sm font-sm text-gray-400'> How it works?</p>
-              </div>
-            </div>
-            <div className='flex gap-4 w-auto items-center bg-gray-100 px-4 py-2'>
-              <Search className='text-gray-400 w-5 h-5'/>
-              <p className='text-[15px] text-gray-400'>Search features, payments, etc.</p>
-            </div>
-        </div> */}
-
+        <div className='col-span-4'>
           <div className='flex flex-col px-6 py-4'>
             <div>
               <div className='flex justify-between'>
@@ -127,45 +114,11 @@ const AdminPage = () => {
                     <div className='flex justify-end items-end'><p className='text-[15px] font-[500]'>Details</p></div>
 
                     <div className='flex justify-end items-center'>
-                      <p className='text-[15px] text-[#4D4D4D] font-[500]'>Adhar</p>
+                      <p className='text-[15px] text-[#4D4D4D] font-[500]'>Aadhar</p>
                     </div>
 
 
                   </div>
-
-                  {/* <Modal isOpen={isOpen} onOpenChange={onOpenChange} style={{ backgroundColor: "white", border: '3px solid grey' }}>
-                    <ModalContent>
-                      {(onClose) => (
-                        <>
-                          <ModalHeader className="flex flex-col gap-1">Expert Details</ModalHeader>
-                          <ModalBody>
-                            <p>
-                              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                              Nullam pulvinar risus non risus hendrerit venenatis.
-                              Pellentesque sit amet hendrerit risus, sed porttitor quam.
-                            </p>
-                            <p>
-                              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                              Nullam pulvinar risus non risus hendrerit venenatis.
-                              Pellentesque sit amet hendrerit risus, sed porttitor quam.
-                            </p>
-                            <p>
-                              Magna exercitation reprehenderit magna aute tempor cupidatat consequat elit
-                              dolor adipisicing. Mollit dolor eiusmod sunt ex incididunt cillum quis.
-                              Velit duis sit officia eiusmod Lorem aliqua enim laboris do dolor eiusmod.
-                              Et mollit incididunt nisi consectetur esse laborum eiusmod pariatur
-                              proident Lorem eiusmod et. Culpa deserunt nostrud ad veniam.
-                            </p>
-                          </ModalBody>
-                          <ModalFooter>
-                            <Button color="danger" variant="light" onPress={onClose}>
-                              Close
-                            </Button>
-                          </ModalFooter>
-                        </>
-                      )}
-                    </ModalContent>
-                  </Modal> */}
 
                   {/* Orders List */}
                   <div>
@@ -174,12 +127,12 @@ const AdminPage = () => {
                       <div className='flex justify-start items-center'>
                         <p className='text-[15px] text-[#4D4D4D] font-[500]'>7 July, 2023</p>
                       </div>
-                      <div className='flex justify-end items-end'><p className='text-[15px] font-[500]' onClick={onOpen}>Show Details</p></div>
+                      <div className='flex justify-end items-end'><p className='text-[15px] font-[500]'>Show Details</p></div>
                       <div className='flex justify-end items-center'>
-                        <p className='text-[15px] text-[#4D4D4D] font-[500]'>&#x20B9;22</p>
+                        <p className='text-[15px] text-[#4D4D4D] font-[500]'>
+                        <AnonButton />
+                        </p>
                       </div>
-
-
                       <div className='flex justify-end items-end' style={{ width: 'fit-content', marginLeft: '50px' }}>
                         <button onClick={AcceptRequest} >Accept</button>
                       </div>
@@ -187,11 +140,7 @@ const AdminPage = () => {
                       <div className='flex justify-end items-end' style={{ width: 'fit-content' }}>
                         <button>Reject</button>
                       </div>
-
-
                     </div>
-
-
                   </div>
                 </div>
               </div>

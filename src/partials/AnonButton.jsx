@@ -25,7 +25,7 @@ function AnonButton() {
         const parsedData = JSON.parse(storedData);
         if (parsedData.status === "logged-in" && !activeState) {
           setActiveState(true);
-          navigate("/approved");
+        //   alert("Proof is valid");
         }
       }
     };
@@ -42,7 +42,7 @@ function AnonButton() {
 
 
   return (
-    <div style={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: "100vh" }}>
+    <div>
       <div>
         <AnonAadhaarProvider
           _appId={app_id}
@@ -51,9 +51,7 @@ function AnonButton() {
         >
           {activeState ? (
             <>
-              <p>✅ Proof is valid</p>
-              <p>Got your Aadhaar Identity Proof</p>
-              <>Welcome anon!</>
+              <p>Valid ✅</p>
               {latestProof && (
                 <AnonAadhaarProof
                   code={JSON.stringify(JSON.parse(latestProof), null, 2)}
@@ -61,7 +59,7 @@ function AnonButton() {
               )}
             </>
           ) : (
-            <div style={{ display: "flex", justifyContent: "center" }}>
+            <div>
               <LogInWithAnonAadhaar 
                 nullifierSeed={1234} 
               />
