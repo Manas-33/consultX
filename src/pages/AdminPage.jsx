@@ -52,9 +52,6 @@ const AdminPage = () => {
               </div>
             </Link>
 
-            <br />
-            <br />
-            <br />
 
             <UserButton />
 
@@ -72,11 +69,11 @@ const AdminPage = () => {
                 </div>
               </div>
               <div className='grid grid-cols-2 gap-5 mt-6'>
-                <div className='p-5 flex flex-col gap-4 drop-shadow-md'>
+                <div className='p-5 flex flex-col gap-4 drop-shadow-md bg-slate-100 rounded-md'>
                   <div><p className='text-[16px] text-[#4D4D4D]'>Experts Requests</p></div>
-                  <div><p className='text-4xl'>{}</p></div>
+                  <div><p className='text-4xl'>10</p></div>
                 </div>
-                <div className='p-5 flex flex-col gap-4 drop-shadow-md'>
+                <div className='p-5 flex flex-col gap-4 drop-shadow-md bg-slate-100 rounded-md'>
                   <div><p className='text-[16px] text-[#4D4D4D]'>Amount received</p></div>
                   <div><p className='text-4xl'>$2,392.19</p></div>
                 </div>
@@ -145,11 +142,17 @@ const AdminPage = () => {
                               const ContractInstance = new ethers.Contract(ContractAddress, abi.abi, signers);
                               const AcceptRequests=await ContractInstance.AcceptParticularExpertRequest(account);
                               console.log(AcceptRequests);
-                            }} >Accept</button>
+                            }} >
+                              <a className="btn text-white bg-green-500 hover:bg-green-500 w-full mb-4 sm:w-auto sm:mb-0" href="#0">
+                                Accept
+                              </a>
+                            </button>
                           </div>
 
                           <div className='flex justify-end items-end' style={{ width: 'fit-content' }}>
-                            <button>Reject</button>
+                            <button><a className="btn text-white bg-red-500 hover:bg-red-600 w-full mb-4 sm:w-auto sm:mb-0" href="#0">
+                    Reject
+                  </a></button>
                           </div>
                         </div>
                       </div>

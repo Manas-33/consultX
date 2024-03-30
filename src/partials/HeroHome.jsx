@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import Modal from '../utils/Modal';
 
 import HeroImage from '../images/hero-image.png';
+import { Link } from 'react-router-dom';
 
 function HeroHome() {   
 
@@ -39,14 +40,18 @@ function HeroHome() {
               </p>
               <div className="max-w-xs mx-auto sm:max-w-none sm:flex sm:justify-center" data-aos="zoom-y-out" data-aos-delay="300">
                 <div>
+                  <Link to='/browse'>
                   <a className="btn text-white bg-blue-600 hover:bg-blue-700 w-full mb-4 sm:w-auto sm:mb-0" href="#0">
                     Get Help
                   </a>
+                  </Link>
                 </div>
                 <div>
+                  <Link to='/expert'>
                   <a className="btn text-white bg-gray-900 hover:bg-gray-800 w-full sm:w-auto sm:ml-4" href="#0">
                     Join as Expert
                   </a>
+                  </Link>
                 </div>
               </div>
             </div>

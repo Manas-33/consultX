@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ScheduleMeeting } from 'react-schedule-meeting';
+import NewHeader from './NewHeader';
 
 export default function Meet() {
   const [selectedTimeSlots, setSelectedTimeSlots] = useState([]);
@@ -17,7 +18,8 @@ export default function Meet() {
   }
 
   return (
-    <div>
+    <div className=''>
+      <NewHeader/>
       <ScheduleMeeting
         borderRadius={10}
         primaryColor="#3f5b85"
@@ -25,12 +27,13 @@ export default function Meet() {
         availableTimeslots={availableTimeslots}
         onStartTimeSelect={handleStartTimeSelect}
         startTimeListStyle="scroll-list"
+        className='pt-20'
       />
-      <div>
-        <h2>Selected Time Slots:</h2>
-        <ul>
+      <div className='flex flex-col items-center justify-center gap-4 mx-20 my-5 w-[90%] rounded-md  p-5'>
+        <h2 className='bg-slate-300 p-3 rounded-md'>Selected Time Slots</h2>
+        <ul className='flex flex-col gap-3'>
           {selectedTimeSlots.map((timeSlot, index) => (
-            <li key={index}>
+            <li key={index} className='text-md font-semibold'>
               {timeSlot.startTime && timeSlot.startTime.toString()} - {timeSlot.endTime && timeSlot.endTime.toString()}
             </li>
           ))}

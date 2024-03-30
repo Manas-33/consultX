@@ -101,7 +101,7 @@ function NewHeader() {
                     
                     <Role />
 
-                    {!Accountc ? <button radius="full" onClick={ConnectToMetamask} className="bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg" style={{ marginLeft: '30px' }}>
+                    {!Accountc ? <button radius="full" onClick={ConnectToMetamask} className="bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg p-3 rounded-md" style={{ marginLeft: '30px' }}>
                         Connect
                     </button> : <>{<><div style={{marginLeft:'100px'}}>
                         <Jazzicon diameter={15} seed={jsNumberForAddress(`${Accountc}`)} />

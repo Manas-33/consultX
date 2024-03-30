@@ -10,6 +10,7 @@ export function UserButton() {
   const [UserImage, setUserImage] = useState("");
   const [UserName, setUserName] = useState("");
   const [UserEmail, setUserEmail] = useState("");
+  const [Accountc, setAccountc] = useState("");
   const Navigator = useNavigate();
 
   const { loaded, session, signOut } = useClerk();
@@ -31,67 +32,47 @@ export function UserButton() {
     }
   }
 
+  const ConnectToMetamask = async () => {
+    if (window.ethereum) {
+        const accounts = await window.ethereum.request({
+            "method": "eth_requestAccounts",
+            "params": []
+        });
+
+        const Account = accounts[0];
+        console.log(accounts)
+        console.log("Account Connected: " + Account);
+        setAccountc(Account);
+    } else {
+        throw new Error("Metamask Not Installed!!");
+    }
+}
+
   useEffect(() => {
     CheckClerkLoad();
+    ConnectToMetamask();
   }, [loaded])
 
   return (
-    <UnstyledButton className={classes.user}>
-      <Group>
 
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          marginRight: 20,
-          width:'fit-content'
-        }}>
-          <Avatar
-            src={UserImage}
-            style={{borderRadius: '50%'}}
-          />
-        </div>
-        
-        <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          marginRight: 20
-        }}>
-          <Text size="sm" color="gray" 
-          style={{ 
-            textAlign: 'left', marginTop: 30, fontWeight: "bold"
-          }}>
-            {UserName}
-          </Text>
-          <Text size="sm" color="gray" style={{ textAlign: 'left' }}>
-            {UserEmail}
-          </Text>
-        </div>
-        <div
-        // make a round circle
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
-            borderRadius: '50%',
-            width: 50,
-            height: 50,
-            backgroundColor: 'rgba(0,0,0,0.1)',
-            marginLeft: 75,
-            marginTop: 10
-          }}
-        >
-        <IconLogout
-          style={{ color: 'red' , display:'block',width:'fit-content',margin:'auto'}}
-          stroke={1.5}
-          onClick={SignoutUser}
-        />
-        </div>
-      </Group>
-    </UnstyledButton>
+    <div className='absolute bottom-2 flex flex-col gap-4 items-center mb-2 w-[90%]'>
+            <div className='flex justify-between items-center px-3 py-2 bg-slate-300 rounded-md w-full'>
+              <div className=''>
+              </div>
+              <div className='pl-3 w-full text-wrap'>
+                <p className='text-[13px] font-semibold truncate w-1/2'>Wallet Address</p>
+                <p className='text-[13px] font-semibold truncate w-1/2'>{Accountc}</p>
+              </div>
+            </div>
+            <div className='flex justify-between items-center px-3 py-2 bg-slate-300 rounded-md w-full'>
+              <div className=''>
+                <img className='w-10 h-10 rounded-full' src={UserImage} alt='userImage'/>
+              </div>
+              <div className='pl-3 w-full'>
+                <p className='text-[13px]'>{UserName}</p>
+                <p className='text-[16px]'>{UserEmail}</p>
+              </div>
+            </div>
+    </div>
   );
 }
