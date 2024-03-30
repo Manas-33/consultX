@@ -22,6 +22,7 @@ import Requests from './pages/Requests';
 import ExpertPage from './pages/ExpertPage';
 import AnonButton from './partials/AnonButton';
 import Expertcard from './pages/Expertcard'
+import Meet from './partials/Meet';
 
 
 function App() {
@@ -58,7 +59,7 @@ function App() {
         <Route path='/div' element={<DiveshProfile/>} />
         <Route path='/verify' element={<AnonButton/>} />
         <Route path='/approved' element={<ExpertPage />} />
-
+        <Route path='/schedule' element={<Meet />} />
       </Routes>
     </>
   );

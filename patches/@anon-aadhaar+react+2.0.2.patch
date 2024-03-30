@@ -1,0 +1,22 @@
+diff --git a/node_modules/@anon-aadhaar/react/dist/index.js b/node_modules/@anon-aadhaar/react/dist/index.js
+index 2d36ce1..d0fcd72 100644
+--- a/node_modules/@anon-aadhaar/react/dist/index.js
++++ b/node_modules/@anon-aadhaar/react/dist/index.js
+@@ -1296,7 +1296,7 @@ var LogInWithAnonAadhaar = ({
+     (state.status === "logged-out" || state.status === "logging-in") && /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)("div", { children: [
+       /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)(Btn2, { onClick: openModal, children: [
+         /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(Logo, { src: anonAadhaarLogo }),
+-        "Login"
++        "Verify"
+       ] }),
+       /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(
+         Modal,
+@@ -1319,7 +1319,7 @@ var LogInWithAnonAadhaar = ({
+     state.status === "logged-in" && /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)(RelativeContainer, { children: [
+       /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)(Btn2, { onClick: toggleMenu, children: [
+         /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(Logo, { src: anonAadhaarLogo }),
+-        "Menu"
++        "Verified"
+       ] }),
+       /* @__PURE__ */ (0, import_jsx_runtime11.jsxs)(MenuContainer, { $isopen: isMenuOpen, children: [
+         /* @__PURE__ */ (0, import_jsx_runtime11.jsx)(MenuItem, { onClick: openModal, children: "Create a proof" }),
