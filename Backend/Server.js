@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const UsersDb = require('./Models/Users');
 const ExpertDb = require('./Models/Experts');
 const ClientDb = require('./Models/Clients');
-
+const { createClient } = require('urql');
 
 app.use(express.json());
 app.use(CORS({
@@ -121,6 +121,28 @@ app.post("/UpdateExpertProfile", async (req, res) => {
         });
 
 
+})
+
+app.get("/getAllExperts", async (req, res) => {
+
+    const QueryURL = "https://api.studio.thegraph.com/query/69106/consultxgrpah/0.0.1";
+
+    const Query = `{expertRequesteds {
+            ExpertAddress
+            ExpertName
+            ExpertemailAddress
+            RequestNumber
+            coursefees
+            expertise
+            id
+          }}`
+
+    const Client = createClient({
+        url: QueryURL
+    })
+
+    const data = await Client.query(Query).toPromise();
+    res.send(data.data.expertRequesteds)
 })
 
 

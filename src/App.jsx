@@ -24,7 +24,6 @@ import AnonButton from './partials/AnonButton';
 import Expertcard from './pages/Expertcard'
 import Meet from './partials/Meet';
 
-
 function App() {
 
   const location = useLocation();
