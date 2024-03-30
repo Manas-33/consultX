@@ -20,6 +20,7 @@ import FindExperts from './pages/FindExperts';
 import AdminPage from './pages/AdminPage';
 import Requests from './pages/Requests';
 import ExpertPage from './pages/ExpertPage';
+import AnonButton from './partials/AnonButton';
 
 
 function App() {
@@ -39,7 +40,7 @@ function App() {
     document.querySelector('html').style.scrollBehavior = 'auto'
     window.scroll({ top: 0 })
     document.querySelector('html').style.scrollBehavior = ''
-  }, [location.pathname]); // triggered on route change
+  }, [location.pathname]);
 
   return (
     <>
@@ -54,7 +55,8 @@ function App() {
         <Route path='/admin/requests' element={<Requests/>}/>
         <Route path='/expert' element={<ExpertPage/>} />
         <Route path='/div' element={<DiveshProfile/>} />
-
+        <Route path='/verify' element={<AnonButton/>} />
+        <Route path='/approved' element={<ExpertPage />} />
 
       </Routes>
     </>

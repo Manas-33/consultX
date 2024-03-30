@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useUser } from '@clerk/clerk-react';
 import { useClerk } from '@clerk/clerk-react';
 import Role from '../pages/Role';
-import { Button } from "@nextui-org/react";
+// import { Button } from "@nextui-org/react";
 import Jazzicon , { jsNumberForAddress } from 'react-jazzicon';
 import axios from 'axios';
 
@@ -97,12 +97,12 @@ function NewHeader() {
 
                     <Role />
 
-                    {!Accountc ? <Button radius="full" onClick={ConnectToMetamask} className="bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg" style={{ marginLeft: '30px' }}>
+                    {/* {!Accountc ? <Button radius="full" onClick={ConnectToMetamask} className="bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg" style={{ marginLeft: '30px' }}>
                         Connect
                     </Button> : <>{<><div style={{marginLeft:'100px'}}>
                         <Jazzicon diameter={30} seed={jsNumberForAddress(`${Accountc}`)} />
                         {Accountc.split(0,5)}
-                    </div></>}</>}
+                    </div></>}</>} */}
 
                     {/* Site navigation */}
                     <nav className="flex flex-grow" >
