@@ -85,7 +85,7 @@ export function UserButton() {
           }}
         >
         <IconLogout
-          style={{ color: 'red'}}
+          style={{ color: 'red' , display:'block',width:'fit-content',margin:'auto'}}
           stroke={1.5}
           onClick={SignoutUser}
         />

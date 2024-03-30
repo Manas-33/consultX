@@ -1,25 +1,22 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-// import { useDisclosure } from "@nextui-org/react";
-import ClerkProfile from './ClerkProfile';
 import { UserButton } from './UserButton';
 import { ChevronDown, ClipboardList, HomeIcon } from 'lucide-react'
 import { Link } from 'react-router-dom';
 import { useUser } from '@clerk/clerk-react';
-import { SmashUploader } from "@smash-sdk/uploader";
-import confen from '../images/confen.jpeg'
+import * as LR from "@uploadcare/blocks";
+import { uploadFile } from '@uploadcare/upload-client'
 
 
 const ExpertPage = () => {
 
-  // const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  LR.registerBlocks(LR);
   const [FilledProfile, setFilledProfile] = useState(false);
   const [ExpertFees, setExpertFees] = useState("");
   const [ExpertiseSector, setExpertiseSector] = useState("");
   const [UploadedFile, setUploadedFile] = useState();
   const [UploadedFileUrl, setUploadedFileUrl] = useState("");
   const [PhoneNumber, setPhoneNumber] = useState(0);
-
 
 
   const user = useUser();
@@ -41,9 +38,8 @@ const ExpertPage = () => {
   }
 
   const UpdateExpertProfile = async (e) => {
-    UploadFileToBackend();
     e.preventDefault();
-    await axios.post("http://localhost:9000/UpdateExpertProfile", { UserEmail: UserEmail, UpdateData: UpdateData }, { withCredentials: true }).then((res) => {
+    await axios.post("http://localhost:9000/UpdateExpertProfile", { UserEmail: user.user.primaryEmailAddress.emailAddress, UpdateData: UpdateData }, { withCredentials: true }).then((res) => {
       console.log()
     }).catch((err) => {
       console.log(`${err} Occured`)
@@ -51,11 +47,23 @@ const ExpertPage = () => {
   }
 
 
-  const UploadFileToBackend = async () => {
-    
+  const uploadFiletoBackend=async(FileUpload)=>{
+
+    const result = await uploadFile(
+      FileUpload,
+      {
+        publicKey: 'b87c8658bcce8c0c9f84',
+        store: 'auto',
+        metadata: {
+          subsystem: 'js-client',
+          pet: 'UserAdharFile'
+        }
+      }
+    )
+    console.log("Uploaded to Backend : "+result.cdnUrl);
+    setUploadedFileUrl(result.cdnUrl);
+    alert("File Uploaded");
   }
-
-
 
 
   useEffect(() => {
@@ -107,7 +115,7 @@ const ExpertPage = () => {
 
             <section>
               <div className='p-36 '>
-                <form className='p-4 border border-gray-500 rounded-md' style={{ marginTop: '-70px' }} onSubmit={(e)=>{e.preventDefault()}}>
+                <form className='p-4 border border-gray-500 rounded-md' style={{ marginTop: '-70px' }} onSubmit={(e) => { e.preventDefault() }}>
                   <div class="space-y-12">
                     <div class="border-b border-gray-900/10 pb-12">
                       <h2 class="text-3xl font-semibold leading-7 text-gray-900">Fill Profile and Send to Admin</h2>
@@ -152,9 +160,10 @@ const ExpertPage = () => {
 
                             <input type="file" name="postal-code" id="postal-code" autocomplete="postal-code" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" onChange={async (e) => {
                               e.preventDefault();
-                              UploadFileToBackend();
-                            }} />
-                            {/* {UploadedFile && <p>UploadedFile URL : {UploadedFile}</p>} */}
+                              // setUploadedFile(e.target.files[0]);
+                              uploadFiletoBackend(e.target.files[0]);
+                            }} /> 
+
                           </div>
                         </div>
 
@@ -166,7 +175,7 @@ const ExpertPage = () => {
 
                   <div class="mt-6 flex items-center justify-end gap-x-6">
                     <button type="button" class="text-sm font-semibold leading-6 text-gray-900">Cancel</button>
-                    <button type="submit" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" onClick={UploadFileToBackend}>Update</button>
+                    <button type="submit" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" onClick={UpdateExpertProfile}>Update</button>
                   </div>
 
                 </form>

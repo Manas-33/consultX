@@ -92,17 +92,21 @@ function NewHeader() {
                     <img src={user.user.imageUrl} width={"50px"} style={{ borderRadius: '50%', marginLeft: '40px', height: '50px' }} alt='Image is Not uploaded...' />
 
                     <Link to={"/profile"}><p style={{ marginLeft: '30px', fontWeight: 'bold',color:'black' }}>{user.user.fullName}({RoleOfUser})</p></Link>
-
+                    
+                    <div style={{marginLeft:'40px'}}>
                     {RoleOfUser === "Expert" ? <><p className='text-black'><a className='px-2 text-black  hover:underline my-2' href={"/expert"}>ExpertDash</a></p></> : RoleOfUser === "Client" ? <><p><a className='px-2 text-black dark:text-white hover:underline my-2' href={"/Client"}>ClientDash</a></p></> : <><p><a className='px-2 text-black  hover:underline my-2' href={"/admin"}>AdminDash</a></p></>}
 
+                    </div>
+                     
+                    
                     <Role />
 
-                    {/* {!Accountc ? <Button radius="full" onClick={ConnectToMetamask} className="bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg" style={{ marginLeft: '30px' }}>
+                    {!Accountc ? <button radius="full" onClick={ConnectToMetamask} className="bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg" style={{ marginLeft: '30px' }}>
                         Connect
-                    </Button> : <>{<><div style={{marginLeft:'100px'}}>
-                        <Jazzicon diameter={30} seed={jsNumberForAddress(`${Accountc}`)} />
+                    </button> : <>{<><div style={{marginLeft:'100px'}}>
+                        <Jazzicon diameter={15} seed={jsNumberForAddress(`${Accountc}`)} />
                         {Accountc.split(0,5)}
-                    </div></>}</>} */}
+                    </div></>}</>}
 
                     {/* Site navigation */}
                     <nav className="flex flex-grow" >

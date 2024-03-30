@@ -1,9 +1,11 @@
 //SPDX-License-Identifier: MIT
 
-pragma solidity ^0.8.24;
+pragma solidity ^0.8.20;
 
 contract consultVerse {
+
     uint256 public NoOfRequests = 0;
+    uint256 public NoOfClientRequests = 0;
 
     struct Admin {
         address WalletAddress;
@@ -17,8 +19,9 @@ contract consultVerse {
         string emailId;
         string phoneNumber;
         string expertise;
-        uint256 courseFess;
+        uint256 courseFees;
         address[] Clients;
+        uint256 rating;
     }
 
     struct Clients {
@@ -27,6 +30,7 @@ contract consultVerse {
         string emailId;
         string phoneNumber;
         string IntersestedConsulation;
+        address[] Experts;
     }
 
     struct Requestes {
@@ -35,10 +39,18 @@ contract consultVerse {
         uint256 ReqIndex;
     }
 
+    struct ClientRequests {
+        address whoRequested;
+        address whomRequestd;
+        bool reqstatus;
+        uint256 ReqIndex;
+    }
+
     mapping(address => Experts) public OneExpertMap;
     mapping(address => Clients) public OneClientMap;
     mapping(address => Admin) public OneAdminMap;
     mapping(address => Requestes) public AllRequestes;
+    mapping(address => ClientRequests) public AllClientRequestes;
 
     // These are all Events which will trigger Subgraphs//
 
@@ -67,6 +79,14 @@ contract consultVerse {
         string phoneNumber,
         string expertise,
         uint256 coursefees
+    );
+
+    event ClientRequested(
+       address ClientAddress,
+       string ClientEmailAddress,
+       string ClientName,
+       string phoneNumber,
+       uint256 RequestIndex
     );
 
     // These is the End of the events triggering Subgraphs //
@@ -115,7 +135,8 @@ contract consultVerse {
         NewExpert.emailId = _EmailId;
         NewExpert.phoneNumber = _PhoneNumber;
         NewExpert.expertise = _Expertise;
-        NewExpert.courseFess = _ExpertFees;
+        NewExpert.courseFees = _ExpertFees;
+
         emit AddedExpert(
             msg.sender,
             _ExpertName,
@@ -140,12 +161,16 @@ contract consultVerse {
             FetchExpert.emailId,
             FetchExpert.phoneNumber,
             FetchExpert.expertise,
-            FetchExpert.courseFess
+            FetchExpert.courseFees
         );
     }
 
     function checkRequestStatus() public view OnlyExperts returns (bool) {
         return AllRequestes[msg.sender].requestStatus;
+    }
+
+    function checkClientRequestStatus() public view OnlyClients returns(bool){
+        return AllClientRequestes[msg.sender].reqstatus;
     }
 
     function AcceptParticularExpertRequest(address _ExpertAddress)
@@ -176,10 +201,36 @@ contract consultVerse {
         );
     }
 
-    function EnrollInExpertClass(address _Expert) public payable OnlyClients {
-        Experts storage RequiredExpert = OneExpertMap[_Expert];
-        RequiredExpert.Clients.push(msg.sender);
+    function ApplytoParticularExpert(
+        address _ExpertAddress,
+        address _ClientAddress
+    ) public  OnlyClients payable {
+        ClientRequests storage NewClientRequest=AllClientRequestes[_ClientAddress];
+        NewClientRequest.whoRequested=msg.sender;
+        NewClientRequest.whomRequestd=_ExpertAddress;
+        NewClientRequest.ReqIndex=NoOfClientRequests;
+        NewClientRequest.reqstatus=false;
+        NoOfClientRequests++;
+        Clients storage FetchedClient=OneClientMap[msg.sender];
         payable(address(this)).transfer(msg.value);
+        emit ClientRequested(FetchedClient.ClientAddress,FetchedClient.emailId,FetchedClient.name,FetchedClient.phoneNumber,NoOfClientRequests);
+    }
+
+    function AcceptParticularClientRequest(address _ClientAddress) public {
+      require(msg.sender==AllClientRequestes[_ClientAddress].whomRequestd,"User Must be Client Request");
+      ClientRequests storage FetechedClient=AllClientRequestes[_ClientAddress];
+      FetechedClient.reqstatus=true;
+
+    }
+
+
+
+    function sendAllDepositsToExpert(address payable _ExpertAddressToPay) public payable {
+        _ExpertAddressToPay.transfer(address(this).balance);
+    }
+
+    function sendAllDepoiststoClient(address payable  _ClientAddressToPay) public payable {
+        _ClientAddressToPay.transfer(address(this).balance);
     }
 
     function getClientsOfExpert(address _expertAddress)
@@ -188,6 +239,27 @@ contract consultVerse {
         returns (address[] memory)
     {
         return OneExpertMap[_expertAddress].Clients;
+    }
+
+    function getExpertOfClients(address _clientAddress)
+        external
+        view
+        returns (address[] memory)
+    {
+        return OneClientMap[_clientAddress].Experts;
+    }
+
+    function updateExpertRating(address _expertAddress, uint256 _newRating)
+        public
+        OnlyClients
+    {
+        require(
+            OneExpertMap[_expertAddress].Clients[0] != address(0),
+            "Not enrolled with this expert!"
+        );
+        // Implement logic to potentially calculate/verify rating based on client experience
+        Experts storage ExpertToUpdate = OneExpertMap[_expertAddress];
+        ExpertToUpdate.rating = _newRating;
     }
 
     // Make Payments to Smart Contracts Starts

@@ -75,7 +75,7 @@ const AdminPage = () => {
               </div>
               <div className='grid grid-cols-2 gap-5 mt-6'>
                 <div className='p-5 flex flex-col gap-4 drop-shadow-md'>
-                  <div><p className='text-[16px] text-[#4D4D4D]'>Client Requests</p></div>
+                  <div><p className='text-[16px] text-[#4D4D4D]'>Experts Requests</p></div>
                   <div><p className='text-4xl'>10</p></div>
                 </div>
                 <div className='p-5 flex flex-col gap-4 drop-shadow-md'>
