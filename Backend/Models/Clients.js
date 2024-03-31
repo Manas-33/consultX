@@ -11,8 +11,8 @@ const ClientSchema= new mongoose.Schema({
     PhoneNumber: {
         type: Number
     },
-    UploadedQrURL:{
-        type:String
+    FilledProfile:{
+        type:Boolean
     },
     IntersestedConsulation:{
         type:String

@@ -75,7 +75,7 @@ app.post('/RegisterUser', async (req, res) => {
 
     } else if (WebsiteUser.Role === "Client") {
 
-        const NewClient = new NewClient({
+        const NewClient = new ClientDb({
             Name: WebsiteUser.Name,
             Email: WebsiteUser.Email,
             FilledProfile: false
@@ -104,6 +104,16 @@ app.post("/CheckFilledProfile", async (req, res) => {
 
 })
 
+app.post("/CheckClientRole",async(req,res)=>{
+    const UserMail = req.body.UserEmail;
+    ClientDb.findOne({ Email: UserMail }).then((item) => {
+        res.send(item.FilledProfile);
+    }).catch((err) => {
+        console.log(`${err} is Occured`);
+    })
+
+})
+
 app.post("/UpdateExpertProfile", async (req, res) => {
     const UserMail = req.body.UserEmail;
     const UpdateData = req.body.UpdateData;
@@ -119,23 +129,38 @@ app.post("/UpdateExpertProfile", async (req, res) => {
         .catch(error => {
             console.error("Error occurred:", error);
         });
+})
 
+app.post("/UpdateClientProfile",async(req,res)=>{
+    const UserMail = req.body.UserEmail;
+    const UpdateData = req.body.UpdateData;
+    const query = { Email: UserMail };
 
+    const update = { $set: { PhoneNumber: UpdateData.PhoneNumber, FilledProfile: true, IntersestedConsulation:UpdateData.ClientInterest} };
+
+    ClientDb.findOneAndUpdate(query, update)
+    .then(updatedDocument => {
+        console.log("Updated document:", updatedDocument);
+        res.send(updatedDocument)
+    })
+    .catch(error => {
+        console.error("Error occurred:", error);
+    });
 })
 
 app.get("/getAllExperts", async (req, res) => {
 
-    const QueryURL = "https://api.studio.thegraph.com/query/69106/consultxgrpah/0.0.1";
+    const QueryURL = "https://api.studio.thegraph.com/query/69106/consultxgrpah/0.0.1⁠⁠";
 
     const Query = `{expertRequesteds {
-            ExpertAddress
-            ExpertName
-            ExpertemailAddress
-            RequestNumber
-            coursefees
-            expertise
-            id
-          }}`
+        ExpertAddress
+        ExpertName
+        ExpertemailAddress
+        RequestNumber
+        coursefees
+        expertise
+        id
+      }}`
 
     const Client = createClient({
         url: QueryURL

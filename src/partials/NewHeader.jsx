@@ -94,7 +94,7 @@ function NewHeader() {
                     <Link to={"/profile"}><p style={{ marginLeft: '30px', fontWeight: 'bold',color:'black' }}>{user.user.fullName}({RoleOfUser})</p></Link>
                     
                     <div style={{marginLeft:'40px'}}>
-                    {RoleOfUser === "Expert" ? <><p className='text-black'><a className='px-2 text-black  hover:underline my-2' href={"/expert"}>ExpertDash</a></p></> : RoleOfUser === "Client" ? <><p><a className='px-2 text-black dark:text-white hover:underline my-2' href={"/Client"}>ClientDash</a></p></> : <><p><a className='px-2 text-black  hover:underline my-2' href={"/admin"}>AdminDash</a></p></>}
+                    {RoleOfUser === "Expert" ? <><p className='text-black'><a className='px-2 text-black  hover:underline my-2' href={"/expert"}>ExpertDash</a></p></> : RoleOfUser === "Client" ? <><p><a className='px-2 text-black hover:underline my-2' href={"/client"} style={{color:'black'}}>ClientDash</a></p></> : <><p><a className='px-2 text-black  hover:underline my-2' href={"/admin"}>AdminDash</a></p></>}
 
                     </div>
                      

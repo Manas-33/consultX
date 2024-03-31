@@ -23,6 +23,9 @@ import ExpertPage from './pages/ExpertPage';
 import AnonButton from './partials/AnonButton';
 import Expertcard from './pages/Expertcard'
 import Meet from './partials/Meet';
+import ClientRequets from './pages/ClientRequets';
+import ClientPage from './pages/ClientPage';
+import AllExpertsCards from './pages/AllExpertsCards';
 
 function App() {
 
@@ -59,6 +62,9 @@ function App() {
         <Route path='/verify' element={<AnonButton/>} />
         <Route path='/approved' element={<ExpertPage />} />
         <Route path='/schedule' element={<Meet />} />
+        <Route path='/client' element={<ClientPage />} />
+        <Route path='/clientreq' element={<ClientRequets />} />
+        <Route path="/experts" element={<AllExpertsCards />} />
       </Routes>
     </>
   );

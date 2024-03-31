@@ -7,7 +7,7 @@ import { ethers } from 'ethers';
 import abi from '../ABI/consultVerse.json';
 import { connectAccount } from 'enchantmask';
 
-const Expertcard = ({ Name, Email, ImageURL }) => {
+const ClientCard = ({ Name, Email, ImageURL }) => {
 
     const MakeRequesttoAdmin = async () => {
         await connectAccount();
@@ -25,7 +25,7 @@ const Expertcard = ({ Name, Email, ImageURL }) => {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signers = provider.getSigner();
         const ContractInstance = new ethers.Contract(ContractAddress, abi.abi, signers);
-        const CheckedStatus = await ContractInstance.checkRequestStatus();
+        const CheckedStatus = await ContractInstance.checkClientRequestStatus();
         console.log(CheckedStatus);
         alert("Request Status Acceptance : " + CheckedStatus);
     }
@@ -37,7 +37,7 @@ const Expertcard = ({ Name, Email, ImageURL }) => {
                     {/* Logo and Name */}
                     <div className='flex gap-3'>
                         <div className='flex flex-col mx-4 gap-1 justify-start items-start w-2/3'>
-                            <p className='text-2xl font-semibold'>ConsultX(Expert)</p>
+                            <p className='text-2xl font-semibold'>ConsultX(Client)</p>
                         </div>
                     </div>
 
@@ -49,32 +49,18 @@ const Expertcard = ({ Name, Email, ImageURL }) => {
                             <p className='text-[14px]'>Your Profile</p>
                         </div>
 
-
-                        <div className='flex gap-2 px-2 py-4 rounded-md hover:bg-slate-300' onClick={async () => {
-                            await connectAccount();
-                            const ClientAddress = prompt("Enter Client Address");
-                            const ContractAddress="0x49C49cC95d6337bb93ad662AabF9F186F098E690";
-                            const provider = new ethers.providers.Web3Provider(window.ethereum);
-                            const signers = provider.getSigner();
-                            const ContractInstance = new ethers.Contract(ContractAddress, abi.abi, signers);
-                            const AcceptClient = await ContractInstance.AcceptParticularClientRequest(ClientAddress);
-                        }}>
-                            <HomeIcon className='w-5 h-5' />
-                            <p className='text-[14px]'>Accept Requests</p>
-                        </div>
-
                         <Link to="https://refmemeet.vercel.app/">
-                            <div className='flex gap-2 px-2 py-4 rounded-md hover:bg-slate-300'>
-                                <HomeIcon className='w-5 h-5' />
-                                <p className='text-[14px]'>Scedule Meet</p>
-                            </div>
+                        <div className='flex gap-2 px-2 py-4 rounded-md hover:bg-slate-300'>
+                            <HomeIcon className='w-5 h-5' />
+                            <p className='text-[14px]'>Scedule Meet</p>
+                        </div>
                         </Link>
 
                         <Link to={"/clientreq"}>
-                            <div className='flex gap-2 px-2 py-4 rounded-md hover:bg-slate-300'>
-                                <HomeIcon className='w-5 h-5' />
-                                <p className='text-[14px]'>Client Requests</p>
-                            </div>
+                        <div className='flex gap-2 px-2 py-4 rounded-md hover:bg-slate-300'>
+                            <HomeIcon className='w-5 h-5' />
+                            <p className='text-[14px]'>Client Requests</p>
+                        </div>
                         </Link>
 
                         <br />
@@ -96,7 +82,6 @@ const Expertcard = ({ Name, Email, ImageURL }) => {
                             <h6>Email : {Email}</h6>
                             <div className="skills">
                                 <br />
-                                <button style={{ border: '3px solid grey' }} onClick={MakeRequesttoAdmin}>Request Admin</button>
                                 <button style={{ border: '3px solid grey', marginLeft: '20px' }} onClick={checkRequestStatusofRequest}>Check Status</button>
                             </div>
                         </div>
@@ -113,4 +98,4 @@ const Expertcard = ({ Name, Email, ImageURL }) => {
     )
 }
 
-export default Expertcard
+export default ClientCard

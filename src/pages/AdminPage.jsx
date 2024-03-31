@@ -31,11 +31,7 @@ const AdminPage = () => {
 
           <div className='flex gap-3'>
             <div className='flex flex-col mx-4 gap-1 justify-start items-start w-2/3'>
-              <p className='text-2xl font-semibold'>
-                ConsultX</p>
-            </div>
-            <div className='flex items-center'>
-              <ChevronDown className='h-7 w-7 font-bold' />
+              <p className='text-2xl font-semibold'>ConsultX(Admin)</p>
             </div>
           </div>
 
@@ -45,7 +41,7 @@ const AdminPage = () => {
               <HomeIcon className='w-5 h-5' />
               <p className='text-[14px]'>Home</p>
             </div>
-            <Link to="/admin/requests">
+            <Link to="/profile">
               <div className='flex gap-2 px-2 py-4 rounded-md hover:bg-slate-300'>
                 <ClipboardList className='w-5 h-5' />
                 <p className='text-[14px]'>Your Profile</p>
@@ -71,11 +67,13 @@ const AdminPage = () => {
               <div className='grid grid-cols-2 gap-5 mt-6'>
                 <div className='p-5 flex flex-col gap-4 drop-shadow-md bg-slate-100 rounded-md'>
                   <div><p className='text-[16px] text-[#4D4D4D]'>Experts Requests</p></div>
-                  <div><p className='text-4xl'>10</p></div>
+                  <div><p className='text-4xl'>{AllRequests ? AllRequests.length:0}</p></div>
                 </div>
-                <div className='p-5 flex flex-col gap-4 drop-shadow-md bg-slate-100 rounded-md'>
-                  <div><p className='text-[16px] text-[#4D4D4D]'>Amount received</p></div>
-                  <div><p className='text-4xl'>$2,392.19</p></div>
+                <div className='p-5 flex flex-col gap-4 drop-shadow-md'>
+                  <div><p className='text-[16px] text-[#4D4D4D]'>Course Fees</p></div>
+                  <div><p className='text-4xl'>{AllRequests && AllRequests.map((val)=>{
+                    return (<>{val.coursefees}</>)
+                  })}</p></div>
                 </div>
               </div>
             </div>
@@ -113,7 +111,7 @@ const AdminPage = () => {
 
                   </div>
 
-                  {AllRequests && AllRequests.map((val) => {
+                  {AllRequests ? AllRequests.map((val) => {
 
                     return (<>
 
@@ -159,12 +157,7 @@ const AdminPage = () => {
 
                     </>)
 
-
-                  })}
-
-
-
-
+                  }) :<>No Pending Requests ...</>}
                 </div>
               </div>
             </div>

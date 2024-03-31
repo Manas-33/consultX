@@ -21,7 +21,6 @@ contract consultVerse {
         string expertise;
         uint256 courseFees;
         address[] Clients;
-        uint256 rating;
     }
 
     struct Clients {
@@ -74,6 +73,7 @@ contract consultVerse {
     event ExpertRequested(
         address ExpertAddress,
         uint256 RequestNumber,
+        bool RequestStatus,
         string ExpertName,
         string ExpertemailAddress,
         string phoneNumber,
@@ -82,13 +82,24 @@ contract consultVerse {
     );
 
     event ClientRequested(
-       address ClientAddress,
-       string ClientEmailAddress,
-       string ClientName,
-       string phoneNumber,
-       uint256 RequestIndex
+        address ClientAddress,
+        bool reqAccepted,
+        string ClientEmailAddress,
+        string ClientName,
+        string phoneNumber,
+        uint256 RequestIndex
     );
 
+    event ExpertRequestAccepted(
+      address ExpertAddress,
+      bool ExpertRequestStatus,
+      string ExpertName,
+      string Expertise,
+      uint256 ExpertFees
+    );
+
+
+ 
     // These is the End of the events triggering Subgraphs //
 
     constructor() {
@@ -157,6 +168,7 @@ contract consultVerse {
         emit ExpertRequested(
             msg.sender,
             NewRequest.ReqIndex,
+            NewRequest.requestStatus,
             FetchExpert.name,
             FetchExpert.emailId,
             FetchExpert.phoneNumber,
@@ -169,8 +181,12 @@ contract consultVerse {
         return AllRequestes[msg.sender].requestStatus;
     }
 
-    function checkClientRequestStatus() public view OnlyClients returns(bool){
+    function checkClientRequestStatus() public view OnlyClients returns (bool) {
         return AllClientRequestes[msg.sender].reqstatus;
+    }
+
+    function GetSmartContractBalance() public view returns (uint256) {
+        return address(this).balance;
     }
 
     function AcceptParticularExpertRequest(address _ExpertAddress)
@@ -178,6 +194,14 @@ contract consultVerse {
         OnlyAdmin
     {
         AllRequestes[_ExpertAddress].requestStatus = true;
+        Experts storage SelectedExpert=OneExpertMap[_ExpertAddress];
+        emit ExpertRequestAccepted(
+            SelectedExpert.ExpertAddress,
+            true,
+            SelectedExpert.name,
+            SelectedExpert.expertise,
+            SelectedExpert.courseFees
+        );
     }
 
     function AddClient(
@@ -204,32 +228,52 @@ contract consultVerse {
     function ApplytoParticularExpert(
         address _ExpertAddress,
         address _ClientAddress
-    ) public  OnlyClients payable {
-        ClientRequests storage NewClientRequest=AllClientRequestes[_ClientAddress];
-        NewClientRequest.whoRequested=msg.sender;
-        NewClientRequest.whomRequestd=_ExpertAddress;
-        NewClientRequest.ReqIndex=NoOfClientRequests;
-        NewClientRequest.reqstatus=false;
+    ) public payable OnlyClients {
+        ClientRequests storage NewClientRequest = AllClientRequestes[
+            _ClientAddress
+        ];
+        NewClientRequest.whoRequested = msg.sender;
+        NewClientRequest.whomRequestd = _ExpertAddress;
+        NewClientRequest.ReqIndex = NoOfClientRequests;
+        NewClientRequest.reqstatus = false;
         NoOfClientRequests++;
-        Clients storage FetchedClient=OneClientMap[msg.sender];
+        Clients storage FetchedClient = OneClientMap[msg.sender];
         payable(address(this)).transfer(msg.value);
-        emit ClientRequested(FetchedClient.ClientAddress,FetchedClient.emailId,FetchedClient.name,FetchedClient.phoneNumber,NoOfClientRequests);
+        emit ClientRequested(
+            FetchedClient.ClientAddress,
+            NewClientRequest.reqstatus,
+            FetchedClient.emailId,
+            FetchedClient.name,
+            FetchedClient.phoneNumber,
+            NewClientRequest.ReqIndex
+        );
     }
 
-    function AcceptParticularClientRequest(address _ClientAddress) public {
-      require(msg.sender==AllClientRequestes[_ClientAddress].whomRequestd,"User Must be Client Request");
-      ClientRequests storage FetechedClient=AllClientRequestes[_ClientAddress];
-      FetechedClient.reqstatus=true;
-
+    function AcceptParticularClientRequest(address _ClientAddress)
+        public
+        OnlyExperts
+    {
+        ClientRequests storage FetechedClient = AllClientRequestes[
+            _ClientAddress
+        ];
+        Clients storage NewClient = OneClientMap[_ClientAddress];
+        FetechedClient.reqstatus = true;
+        Experts storage ClientToPushExperts = OneExpertMap[msg.sender];
+        ClientToPushExperts.Clients.push(_ClientAddress);
+        NewClient.Experts.push(ClientToPushExperts.ExpertAddress);
     }
 
-
-
-    function sendAllDepositsToExpert(address payable _ExpertAddressToPay) public payable {
+    function sendAllDepositsToExpert(address payable _ExpertAddressToPay)
+        public
+        payable
+    {
         _ExpertAddressToPay.transfer(address(this).balance);
     }
 
-    function sendAllDepoiststoClient(address payable  _ClientAddressToPay) public payable {
+    function sendAllDepoiststoClient(address payable _ClientAddressToPay)
+        public
+        payable
+    {
         _ClientAddressToPay.transfer(address(this).balance);
     }
 
@@ -247,19 +291,6 @@ contract consultVerse {
         returns (address[] memory)
     {
         return OneClientMap[_clientAddress].Experts;
-    }
-
-    function updateExpertRating(address _expertAddress, uint256 _newRating)
-        public
-        OnlyClients
-    {
-        require(
-            OneExpertMap[_expertAddress].Clients[0] != address(0),
-            "Not enrolled with this expert!"
-        );
-        // Implement logic to potentially calculate/verify rating based on client experience
-        Experts storage ExpertToUpdate = OneExpertMap[_expertAddress];
-        ExpertToUpdate.rating = _newRating;
     }
 
     // Make Payments to Smart Contracts Starts

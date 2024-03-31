@@ -97,38 +97,32 @@ const ExpertPage = () => {
 
             <div className='flex gap-3 '  >
               <div className='flex flex-col mx-4 gap-1 justify-start items-start w-2/3'>
-                <p className='text-2xl font-semibold'>
-                  ConsultX</p>
-              </div>
-              <div className='flex items-center'>
-                <ChevronDown className='h-7 w-7 font-bold' />
+                <p className='text-2xl font-semibold'>ConsultX(Expert)</p>
               </div>
             </div>
 
-            {/* Navigation List */}
             <div className='mt-6 gap-1'>
               <div className='flex gap-2 px-2 py-4 rounded-md hover:bg-slate-300'>
                 <HomeIcon className='w-5 h-5' />
                 <p className='text-[14px]'>Fill Profile</p>
               </div>
 
-              <Link to="/profile">
+              <Link to={"/expert"}>
                 <div className='flex gap-2 px-2 py-4 rounded-md hover:bg-slate-300'>
                   <ClipboardList className='w-5 h-5' />
                   <p className='text-[14px]'>Your Profile</p>
                 </div>
               </Link>
 
-              <div className='flex gap-2 px-2 py-4 rounded-md hover:bg-slate-300'>
-                <HomeIcon className='w-5 h-5' />
-                <p className='text-[14px]'>Check Approvals</p>
-              </div>
 
-              <div className='flex gap-2 px-2 py-4 rounded-md hover:bg-slate-300'>
-                <HomeIcon className='w-5 h-5' />
-                <p className='text-[14px]'>Check Clients</p>
 
-              </div>
+
+              <Link to={"/clientreq"}>
+                <div className='flex gap-2 px-2 py-4 rounded-md hover:bg-slate-300'>
+                  <HomeIcon className='w-5 h-5' />
+                  <p className='text-[14px]'>Check Requests</p>
+                </div>
+              </Link>
 
               <br />
               <br />
@@ -213,7 +207,7 @@ const ExpertPage = () => {
           </div>
 
         </div>
-      </section></> :<><p><Expertcard Name={user.user.fullName} Email={user.user.primaryEmailAddress.emailAddress}  ImageURL={user.user.imageUrl}/></p></>}
+      </section></> : <><p><Expertcard Name={user.user.fullName} Email={user.user.primaryEmailAddress.emailAddress} ImageURL={user.user.imageUrl} /></p></>}
     </>
 
   )
