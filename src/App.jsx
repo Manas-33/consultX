@@ -18,7 +18,6 @@ import DiveshProfile from './pages/Profile'
 import BrowseClientList from './pages/BrowseClientList';
 import FindExperts from './pages/FindExperts';
 import AdminPage from './pages/AdminPage';
-import Requests from './pages/Requests';
 import ExpertPage from './pages/ExpertPage';
 import AnonButton from './partials/AnonButton';
 import Expertcard from './pages/Expertcard'

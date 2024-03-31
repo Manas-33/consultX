@@ -1,0 +1,38 @@
+specVersion: 1.0.0
+indexerHints:
+  prune: auto
+schema:
+  file: schema.graphql
+dataSources:
+  - kind: ethereum
+    name: Contract
+    network: mumbai
+    source:
+      address: "0xb48Ae3d66Eef0b14cF9D1ed9cc569B45b3aDf87e"
+      abi: Contract
+      startBlock: 47678621
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      entities:
+        - AddedClient
+        - AddedExpert
+        - ClientRequested
+        - ExpertRequestAccepted
+        - ExpertRequested
+      abis:
+        - name: Contract
+          file: Contract\abis\Contract.json
+      eventHandlers:
+        - event: AddedClient(address,string,string,string,string)
+          handler: handleAddedClient
+        - event: AddedExpert(address,string,string,string,string,uint256)
+          handler: handleAddedExpert
+        - event: ClientRequested(address,bool,string,string,string,uint256)
+          handler: handleClientRequested
+        - event: ExpertRequestAccepted(address,bool,string,string,uint256)
+          handler: handleExpertRequestAccepted
+        - event: ExpertRequested(address,uint256,bool,string,string,string,string,uint256)
+          handler: handleExpertRequested
+      file: Contract\Contract.wasm

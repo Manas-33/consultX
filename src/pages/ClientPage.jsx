@@ -56,18 +56,18 @@ const Clientpage = () => {
 
     }
 
-    const AllExpertsFetch = async () => {
+    // const AllExpertsFetch = async () => {
 
-        axios.get("http://localhost:9000/getAllExperts").then(async (res) => {
-            setAllExperts(res.data);
-        }).catch((err)=>{
-            console.log(`${err} is Occured`);
-        })
-    }
+    //     axios.get("http://localhost:9000/getAllExperts").then(async (res) => {
+    //         setAllExperts(res.data);
+    //     }).catch((err)=>{
+    //         console.log(`${err} is Occured`);
+    //     })
+    // }
 
     useEffect(() => {
         CheckFilledProfile();
-        AllExpertsFetch();
+        // AllExpertsFetch();
     }, [CheckFilledProfile])
 
 

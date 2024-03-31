@@ -63,7 +63,7 @@ const Expertcard = ({ Name, Email, ImageURL }) => {
                             <p className='text-[14px]'>Accept Requests</p>
                         </div>
 
-                        <Link to="https://refmemeet.vercel.app/">
+                        <Link to="https://huddle01-meet.vercel.app/">
                             <div className='flex gap-2 px-2 py-4 rounded-md hover:bg-slate-300'>
                                 <HomeIcon className='w-5 h-5' />
                                 <p className='text-[14px]'>Scedule Meet</p>

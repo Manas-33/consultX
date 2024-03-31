@@ -10,19 +10,18 @@ import { connectAccount } from 'enchantmask';
 
 const AdminPage = () => {
 
-  const [AllRequests, setAllRequests] = useState();
+  // const [AllRequests, setAllRequests] = useState();
 
-  const getAlldataofRequestedExperts = async () => {
-    axios.get("http://localhost:9000/getAllExperts").then((res) => {
-      console.log(res.data);
-      setAllRequests(res.data);
-    })
-  }
+  // const getAlldataofRequestedExperts = async () => {
+  //   axios.get("http://localhost:9000/getAllExperts").then((res) => {
+  //     console.log(res.data);
+  //     setAllRequests(res.data);
+  //   })
+  // }
 
-
-  useEffect(() => {
-    getAlldataofRequestedExperts();
-  }, [])
+  // useEffect(() => {
+  //   getAlldataofRequestedExperts();
+  // }, [])
 
   return (
     <section>
@@ -67,13 +66,11 @@ const AdminPage = () => {
               <div className='grid grid-cols-2 gap-5 mt-6'>
                 <div className='p-5 flex flex-col gap-4 drop-shadow-md bg-slate-100 rounded-md'>
                   <div><p className='text-[16px] text-[#4D4D4D]'>Experts Requests</p></div>
-                  <div><p className='text-4xl'>{AllRequests ? AllRequests.length:0}</p></div>
+                  <div><p className='text-4xl'>1</p></div>
                 </div>
                 <div className='p-5 flex flex-col gap-4 drop-shadow-md'>
                   <div><p className='text-[16px] text-[#4D4D4D]'>Course Fees</p></div>
-                  <div><p className='text-4xl'>{AllRequests && AllRequests.map((val)=>{
-                    return (<>{val.coursefees}</>)
-                  })}</p></div>
+                  <div><p className='text-4xl'>10</p></div>
                 </div>
               </div>
             </div>
@@ -111,19 +108,23 @@ const AdminPage = () => {
 
                   </div>
 
-                  {AllRequests ? AllRequests.map((val) => {
-
-                    return (<>
-
                       <div>
                         <div className='grid grid-cols-6 gap-4 px-3 py-3.5 border-b-2 border-gray-200' style={{ marginLeft: '-20px' }}>
-                          <div className='flex justify-start items-start'><p className='text-[15px] font-[500] text-blue-400'>{val.RequestNumber}</p></div>
+                          <div className='flex justify-start items-start'><p className='text-[15px] font-[500] text-blue-400'>0</p></div>
                           <div className='flex justify-start items-center'>
-                            <p className='text-[15px] text-[#4D4D4D] font-[500]'>{val.coursefees} Ethers</p>
+                            <p className='text-[15px] text-[#4D4D4D] font-[500]'>10 Ethers</p>
                           </div>
                           <div className='flex justify-end items-end'><a href={''} onClick={(e) => {
                             e.preventDefault();
-                            alert(`${JSON.stringify(val)}`)
+                            alert(`${JSON.stringify({
+                              "id": "0x7db1dc00993ed5f6ce7d9a9604c60ffd97441670fabb6afc3aec89b51d0cf04207000000",
+                              "ExpertAddress": "0x7c11134b4e195b4e8ec519a168f500fa459adf5e",
+                              "ExpertName": "Aditya Suryawanshi 2.0",
+                              "EmailId": "adityavanshi5451@gmail.com",
+                              "ExpertFees": "10",
+                              "Expertise": "Blockchain",
+                              "PhoneNumber": "9834009334"
+                            })}`)
                           }} className='text-[15px] font-[500]'>Show Details</a></div>
                           <div className='flex justify-end items-center'>
                             <p className='text-[15px] text-[#4D4D4D] font-[500]'>
@@ -147,17 +148,13 @@ const AdminPage = () => {
                             </button>
                           </div>
 
-                          <div className='flex justify-end items-end' style={{ width: 'fit-content' }}>
+       <div className='flex justify-end items-end' style={{ width: 'fit-content' }}>
                             <button><a className="btn text-white bg-red-500 hover:bg-red-600 w-full mb-4 sm:w-auto sm:mb-0" href="#0">
                     Reject
                   </a></button>
                           </div>
                         </div>
                       </div>
-
-                    </>)
-
-                  }) :<>No Pending Requests ...</>}
                 </div>
               </div>
             </div>
